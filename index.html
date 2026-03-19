@@ -535,66 +535,151 @@ nav.scrolled {
   opacity: 0.15;
 }
 
+/* YouTube thumbnail card styles */
+.card-yt-link {
+  display: block;
+  position: absolute;
+  inset: 0;
+  text-decoration: none;
+}
+
+.card-thumb-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.6s ease;
+}
+
+.portfolio-card:hover .card-thumb-bg {
+  transform: scale(1.05);
+}
+
+.card-play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(201,168,76,0.9);
+  color: #080808;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  padding-left: 4px;
+  transition: all 0.3s ease;
+  z-index: 2;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.portfolio-card:hover .card-play-icon {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.8);
+}
+
 /* YOUTUBE */
 .youtube {
   padding: 120px 60px;
   background: var(--black);
 }
 
-.youtube-grid {
+.yt-thumb-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
   gap: 2px;
-  margin-bottom: 60px;
 }
 
-.yt-card {
+.yt-thumb-card {
   position: relative;
-  background: var(--card);
+  aspect-ratio: 16/9;
   overflow: hidden;
-}
-
-.yt-iframe-wrap {
-  aspect-ratio: 16/9;
-  width: 100%;
-}
-
-.yt-iframe-wrap iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-.yt-placeholder {
-  aspect-ratio: 16/9;
   background: var(--card);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  border: 1px solid var(--border);
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
 }
 
-.yt-play {
-  width: 60px; height: 60px;
+.yt-thumb-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.5s ease;
+}
+
+.yt-thumb-card:hover .yt-thumb-img {
+  transform: scale(1.07);
+}
+
+.yt-thumb-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  border: 1px solid var(--gold);
+  background: rgba(201,168,76,0.9);
+  color: #080808;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
-  color: var(--gold);
+  font-size: 14px;
+  padding-left: 3px;
+  transition: all 0.3s ease;
+  z-index: 2;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
 }
 
-.yt-placeholder p {
-  font-size: 13px;
-  color: var(--muted);
-  letter-spacing: 1px;
+.yt-thumb-card:hover .yt-thumb-play {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.7);
+}
+
+.yt-thumb-info {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(8,8,8,0.95), transparent);
+  padding: 28px 16px 14px;
+  transform: translateY(4px);
+  transition: transform 0.3s ease;
+  opacity: 0;
+}
+
+.yt-thumb-card:hover .yt-thumb-info {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.yt-thumb-cat {
+  font-size: 8px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.yt-thumb-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--cream);
+  margin: 0;
 }
 
 .yt-cta {
   text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .yt-thumb-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .yt-thumb-grid { grid-template-columns: 1fr 1fr; }
 }
 
 /* INSTAGRAM */
@@ -1053,76 +1138,92 @@ footer {
   </div>
   <div class="portfolio-grid reveal">
     <div class="portfolio-card" data-cat="eye">
-      <div class="card-bg card-bg-1"></div>
-      <div class="card-placeholder">💙</div>
-      <div class="card-overlay">
-        <span class="card-cat">Eye Look</span>
-        <h3 class="card-title">Blue Eye Glow</h3>
-        <a href="https://youtube.com/@JikotSh" class="card-link" target="_blank">View Tutorial →</a>
-      </div>
+      <a href="https://youtu.be/uhMoF7IuaZM" target="_blank" class="card-yt-link" aria-label="Blue Eye Glow">
+        <div class="card-thumb-bg" style="background-image:url('https://img.youtube.com/vi/uhMoF7IuaZM/hqdefault.jpg')"></div>
+        <div class="card-play-icon">▶</div>
+        <div class="card-overlay">
+          <span class="card-cat">Eye Look</span>
+          <h3 class="card-title">Blue Eye Glow</h3>
+          <span class="card-link">Watch on YouTube →</span>
+        </div>
+      </a>
     </div>
     <div class="portfolio-card" data-cat="eye">
-      <div class="card-bg card-bg-2"></div>
-      <div class="card-placeholder">💚</div>
-      <div class="card-overlay">
-        <span class="card-cat">Eye Look</span>
-        <h3 class="card-title">Green Eye Glow</h3>
-        <a href="https://youtube.com/@JikotSh" class="card-link" target="_blank">View Tutorial →</a>
-      </div>
+      <a href="https://youtu.be/gzoVWcOnWKg" target="_blank" class="card-yt-link" aria-label="Green Eye Glow">
+        <div class="card-thumb-bg" style="background-image:url('https://img.youtube.com/vi/gzoVWcOnWKg/hqdefault.jpg')"></div>
+        <div class="card-play-icon">▶</div>
+        <div class="card-overlay">
+          <span class="card-cat">Eye Look</span>
+          <h3 class="card-title">Green Eye Glow</h3>
+          <span class="card-link">Watch on YouTube →</span>
+        </div>
+      </a>
     </div>
     <div class="portfolio-card" data-cat="before">
-      <div class="card-bg card-bg-3"></div>
-      <div class="card-placeholder">✨</div>
-      <div class="card-overlay">
-        <span class="card-cat">Before & After</span>
-        <h3 class="card-title">Everyday Glam</h3>
-        <a href="https://youtube.com/@JikotSh" class="card-link" target="_blank">View Tutorial →</a>
-      </div>
+      <a href="https://youtu.be/irIZCejfWdc" target="_blank" class="card-yt-link" aria-label="Everyday Glam">
+        <div class="card-thumb-bg" style="background-image:url('https://img.youtube.com/vi/irIZCejfWdc/hqdefault.jpg')"></div>
+        <div class="card-play-icon">▶</div>
+        <div class="card-overlay">
+          <span class="card-cat">Before & After</span>
+          <h3 class="card-title">Everyday Glam</h3>
+          <span class="card-link">Watch on YouTube →</span>
+        </div>
+      </a>
     </div>
     <div class="portfolio-card" data-cat="before">
-      <div class="card-bg card-bg-4"></div>
-      <div class="card-placeholder">💄</div>
-      <div class="card-overlay">
-        <span class="card-cat">Before & After</span>
-        <h3 class="card-title">Soft Glam</h3>
-        <a href="https://youtube.com/@JikotSh" class="card-link" target="_blank">View Tutorial →</a>
-      </div>
+      <a href="https://youtu.be/PYAvN3UDiX0" target="_blank" class="card-yt-link" aria-label="Soft Glam">
+        <div class="card-thumb-bg" style="background-image:url('https://img.youtube.com/vi/PYAvN3UDiX0/hqdefault.jpg')"></div>
+        <div class="card-play-icon">▶</div>
+        <div class="card-overlay">
+          <span class="card-cat">Before & After</span>
+          <h3 class="card-title">Soft Glam</h3>
+          <span class="card-link">Watch on YouTube →</span>
+        </div>
+      </a>
     </div>
     <div class="portfolio-card" data-cat="eye">
-      <div class="card-bg card-bg-5"></div>
-      <div class="card-placeholder">🌟</div>
-      <div class="card-overlay">
-        <span class="card-cat">Eye Look</span>
-        <h3 class="card-title">Light Green Pop</h3>
-        <a href="https://youtube.com/@JikotSh" class="card-link" target="_blank">View Tutorial →</a>
-      </div>
+      <a href="https://youtu.be/cLxH2I6ngOw" target="_blank" class="card-yt-link" aria-label="Light Green Pop">
+        <div class="card-thumb-bg" style="background-image:url('https://img.youtube.com/vi/cLxH2I6ngOw/hqdefault.jpg')"></div>
+        <div class="card-play-icon">▶</div>
+        <div class="card-overlay">
+          <span class="card-cat">Eye Look</span>
+          <h3 class="card-title">Light Green Pop</h3>
+          <span class="card-link">Watch on YouTube →</span>
+        </div>
+      </a>
     </div>
     <div class="portfolio-card" data-cat="hair">
-      <div class="card-bg card-bg-6"></div>
-      <div class="card-placeholder">🌀</div>
-      <div class="card-overlay">
-        <span class="card-cat">Hair</span>
-        <h3 class="card-title">Flaxseed Mask</h3>
-        <a href="https://youtube.com/@JikotSh" class="card-link" target="_blank">View Tutorial →</a>
-      </div>
+      <a href="https://youtu.be/YZBcODdgdIc" target="_blank" class="card-yt-link" aria-label="Flaxseed Mask">
+        <div class="card-thumb-bg" style="background-image:url('https://img.youtube.com/vi/YZBcODdgdIc/hqdefault.jpg')"></div>
+        <div class="card-play-icon">▶</div>
+        <div class="card-overlay">
+          <span class="card-cat">Hair</span>
+          <h3 class="card-title">Flaxseed Mask</h3>
+          <span class="card-link">Watch on YouTube →</span>
+        </div>
+      </a>
     </div>
     <div class="portfolio-card" data-cat="hair">
-      <div class="card-bg card-bg-7"></div>
-      <div class="card-placeholder">💫</div>
-      <div class="card-overlay">
-        <span class="card-cat">Hair</span>
-        <h3 class="card-title">Curly Routine</h3>
-        <a href="https://youtube.com/@JikotSh" class="card-link" target="_blank">View Tutorial →</a>
-      </div>
+      <a href="https://youtu.be/s0AgMmWjJDU" target="_blank" class="card-yt-link" aria-label="Curly Routine">
+        <div class="card-thumb-bg" style="background-image:url('https://img.youtube.com/vi/s0AgMmWjJDU/hqdefault.jpg')"></div>
+        <div class="card-play-icon">▶</div>
+        <div class="card-overlay">
+          <span class="card-cat">Hair</span>
+          <h3 class="card-title">Curly Routine</h3>
+          <span class="card-link">Watch on YouTube →</span>
+        </div>
+      </a>
     </div>
     <div class="portfolio-card" data-cat="before">
-      <div class="card-bg card-bg-8"></div>
-      <div class="card-placeholder">🎭</div>
-      <div class="card-overlay">
-        <span class="card-cat">Before & After</span>
-        <h3 class="card-title">Blythe Doll Look</h3>
-        <a href="https://youtube.com/@JikotSh" class="card-link" target="_blank">View Tutorial →</a>
-      </div>
+      <a href="https://youtu.be/Im92eZK451Q" target="_blank" class="card-yt-link" aria-label="Blythe Doll Look">
+        <div class="card-thumb-bg" style="background-image:url('https://img.youtube.com/vi/Im92eZK451Q/hqdefault.jpg')"></div>
+        <div class="card-play-icon">▶</div>
+        <div class="card-overlay">
+          <span class="card-cat">Before & After</span>
+          <h3 class="card-title">Blythe Doll Look</h3>
+          <span class="card-link">Watch on YouTube →</span>
+        </div>
+      </a>
     </div>
   </div>
 </section>
@@ -1132,18 +1233,71 @@ footer {
   <div class="section-header reveal">
     <h2 class="section-title">Latest<br><em>Tutorials</em></h2>
   </div>
-  <div class="youtube-grid reveal">
-    <div class="yt-card">
-      <div class="yt-iframe-wrap">
-        <iframe src="https://www.youtube.com/embed/gzoVWcOnWKg" allowfullscreen title="Jikot Sh Tutorial"></iframe>
+  <div class="yt-thumb-grid reveal">
+    <a href="https://youtu.be/gzoVWcOnWKg" target="_blank" class="yt-thumb-card">
+      <div class="yt-thumb-img" style="background-image:url('https://img.youtube.com/vi/gzoVWcOnWKg/hqdefault.jpg')"></div>
+      <div class="yt-thumb-play">▶</div>
+      <div class="yt-thumb-info">
+        <span class="yt-thumb-cat">Eye Look</span>
+        <p class="yt-thumb-title">Green Eye Glow</p>
       </div>
-    </div>
-    <div class="yt-card">
-      <div class="yt-placeholder">
-        <div class="yt-play">▶</div>
-        <p>More tutorials on YouTube</p>
+    </a>
+    <a href="https://youtu.be/uhMoF7IuaZM" target="_blank" class="yt-thumb-card">
+      <div class="yt-thumb-img" style="background-image:url('https://img.youtube.com/vi/uhMoF7IuaZM/hqdefault.jpg')"></div>
+      <div class="yt-thumb-play">▶</div>
+      <div class="yt-thumb-info">
+        <span class="yt-thumb-cat">Eye Look</span>
+        <p class="yt-thumb-title">Blue Eye Glow</p>
       </div>
-    </div>
+    </a>
+    <a href="https://youtu.be/PYAvN3UDiX0" target="_blank" class="yt-thumb-card">
+      <div class="yt-thumb-img" style="background-image:url('https://img.youtube.com/vi/PYAvN3UDiX0/hqdefault.jpg')"></div>
+      <div class="yt-thumb-play">▶</div>
+      <div class="yt-thumb-info">
+        <span class="yt-thumb-cat">Before & After</span>
+        <p class="yt-thumb-title">Soft Glam</p>
+      </div>
+    </a>
+    <a href="https://youtu.be/irIZCejfWdc" target="_blank" class="yt-thumb-card">
+      <div class="yt-thumb-img" style="background-image:url('https://img.youtube.com/vi/irIZCejfWdc/hqdefault.jpg')"></div>
+      <div class="yt-thumb-play">▶</div>
+      <div class="yt-thumb-info">
+        <span class="yt-thumb-cat">Before & After</span>
+        <p class="yt-thumb-title">Everyday Glam</p>
+      </div>
+    </a>
+    <a href="https://youtu.be/cLxH2I6ngOw" target="_blank" class="yt-thumb-card">
+      <div class="yt-thumb-img" style="background-image:url('https://img.youtube.com/vi/cLxH2I6ngOw/hqdefault.jpg')"></div>
+      <div class="yt-thumb-play">▶</div>
+      <div class="yt-thumb-info">
+        <span class="yt-thumb-cat">Eye Look</span>
+        <p class="yt-thumb-title">Light Green Pop</p>
+      </div>
+    </a>
+    <a href="https://youtu.be/YZBcODdgdIc" target="_blank" class="yt-thumb-card">
+      <div class="yt-thumb-img" style="background-image:url('https://img.youtube.com/vi/YZBcODdgdIc/hqdefault.jpg')"></div>
+      <div class="yt-thumb-play">▶</div>
+      <div class="yt-thumb-info">
+        <span class="yt-thumb-cat">Hair</span>
+        <p class="yt-thumb-title">Flaxseed Mask</p>
+      </div>
+    </a>
+    <a href="https://youtu.be/s0AgMmWjJDU" target="_blank" class="yt-thumb-card">
+      <div class="yt-thumb-img" style="background-image:url('https://img.youtube.com/vi/s0AgMmWjJDU/hqdefault.jpg')"></div>
+      <div class="yt-thumb-play">▶</div>
+      <div class="yt-thumb-info">
+        <span class="yt-thumb-cat">Hair</span>
+        <p class="yt-thumb-title">Curly Routine</p>
+      </div>
+    </a>
+    <a href="https://youtu.be/Im92eZK451Q" target="_blank" class="yt-thumb-card">
+      <div class="yt-thumb-img" style="background-image:url('https://img.youtube.com/vi/Im92eZK451Q/hqdefault.jpg')"></div>
+      <div class="yt-thumb-play">▶</div>
+      <div class="yt-thumb-info">
+        <span class="yt-thumb-cat">Before & After</span>
+        <p class="yt-thumb-title">Blythe Doll Look</p>
+      </div>
+    </a>
   </div>
   <div class="yt-cta reveal" style="margin-top:48px;">
     <a href="https://youtube.com/@JikotSh" target="_blank" class="btn-primary">See All Videos →</a>
@@ -1209,6 +1363,7 @@ footer {
   </div>
   <div class="contact-form reveal">
     <form action="https://formspree.io/f/xnjgwonk" method="POST" onsubmit="handleSubmit(event)">
+      <input type="hidden" name="_subject" value="💌 پیام جدید از سایت Jikot Sh">
       <div class="form-field">
         <input type="text" name="name" placeholder="Your Name" required>
       </div>
